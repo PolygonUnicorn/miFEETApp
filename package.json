@@ -1,0 +1,14 @@
+{
+  "name": "miFEETA",
+  "version": "1.0.0",
+  "description": "An application for doctors to document the state of their patients",
+  "main": "./app/js/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "FEET",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.3.0"
+  }
+}
