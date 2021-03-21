@@ -5,6 +5,7 @@
 body {
     font-size: 20px;
     font-family: Arial;
+    background-color: rgb(241, 241, 241);
 }
 
 /* The app */
@@ -41,6 +42,10 @@ body {
 .doc-editor {
     margin-top: 20px;
     height: 44em;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .patient-info {
@@ -50,6 +55,65 @@ body {
 .sc-menu {
     margin-top: 20px;
     height: 34em;
+}
+
+
+/* Tool bar */
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tools {
+    
+}
+
+.tools:nth-child(even) {
+    background-color: rgb(189, 189, 189);
+}
+
+.tools button {
+    margin-top: 5px;
+    margin-left: 10px;
+    height: 2.5rem;
+    background-color: rgb(226, 226, 226);
+    border: none;
+    border-radius: 3px;
+    padding: 0px 0.75rem;
+    outline: rgb(185, 88, 88);
+}
+
+.tools button:hover {
+    background-color: rgb(238, 238, 238);
+}
+
+.tools button:active {
+    background-color: rgb(228, 228, 228);
+}
+
+.row1 {
+    flex-grow: 1;
+}
+
+.row2 {
+    flex-grow: 5;
+}
+
+.row3 {
+    flex-grow: 3;
+}
+
+
+/* Document editor */
+.editor {
+    width: 97%;
+    height: 42em;
+    max-height: 42em;
+    margin: auto;
+    background-color: white;
+    overflow: auto;
+    outline: none;
 }
 
 

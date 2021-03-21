@@ -32,10 +32,11 @@ window.onload = (event) => {
 
 
     //Delete it
-    fs.unlink("./app/temp/temp.txt", (err) => {
+    //!Uncomment once we got this file done!
+    /*fs.unlink("./app/temp/temp.txt", (err) => {
         if(err) return console.log(err);
         console.log("Temp file deleted");
-    });
+    });*/
 }
 
 
