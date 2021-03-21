@@ -20,9 +20,11 @@ body {
     align-items: center;
 }
 
-img {
+.image-logo {
     width: 200px;
     height: 200px;
+    background-image: url("../images/logo.jpg");
+    background-size: cover;
 }
 
 .input-element {

@@ -29,7 +29,7 @@ body {
 
 .app-element {
     margin-top: 10px;
-    background-color: gray;
+    background-color: lightgray;
 }
 
 
@@ -50,4 +50,19 @@ body {
 .sc-menu {
     margin-top: 20px;
     height: 34em;
+}
+
+
+/* Patient info */
+.patient-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 1rem;
+    font-weight: bold;
+}
+
+.patient-one {
+    display: inline;
+    font-weight: lighter;
 }

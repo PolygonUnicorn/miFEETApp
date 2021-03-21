@@ -30,12 +30,18 @@
             <div class="toolbar app-element"></div>
 
             <!-- Document editor -->
-            <div class="doc-editor app-element"></div>
+            <div class="doc-editor app-element" contenteditable="true"></div>
         </div>
         
         <div class="column col2">
             <!-- Patient info -->
-            <div class="patient-info app-element"></div>
+            <div class="patient-info app-element">
+                <div class="patient-info-one" id="patient-info-name">Jméno: <div class="patient-one" id="patient-name"></div></div>
+                <div class="patient-info-one" id="patient-info-datum">Datum: <div class="patient-one" id="patient-date"></div></div>
+                <div class="patient-info-one" id="patient-info-insur">Pojišťovna: <div class="patient-one" id="patient-insur"></div></div>
+                <div class="patient-info-one" id="patient-info-rc">RČ: <div class="patient-one" id="patient-rc"></div></div>
+                <div class="patient-info-one" id="patient-info-spec">Specializace: <div class="patient-one" id="patient-spec"></div></div>
+            </div>
             
             <!-- Search menu -->
             <div class="sc-menu app-element"></div>

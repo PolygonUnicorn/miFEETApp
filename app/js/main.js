@@ -25,7 +25,6 @@ function createLoginWindow(){
       enableRemoteModule: true
     },
     show: false,
-    minimizable: false,
     maximizable: false,
     resizable: false
   });

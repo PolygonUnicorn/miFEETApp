@@ -15,10 +15,27 @@
     </script>
     <script src="../js/renderer_login.js"></script>
 
+    <!-- Import jquery -->
+    <script>
+        window.$ = window.jQuery = require("../../plugins/jquery-3.5.1.js");
+    </script>
+    <script src="../../plugins/jquery-3.5.1.js"></script>
+
+    <script>
+    $('img').mousedown(function (e) {
+        if(e.button == 1) { //left click
+          return false;
+        }
+    });
+    </script>
+
 </head>
 <body>
+
+
+
     <div class="container">
-        <img src="../images/logo.jpg" alt="">
+        <div class="image-logo"></div>
         <input type="text" id="user" class="user input-element" placeholder="Username">
         <input type="password" id="pass" class="pass input-element" placeholder="Password">
         <button onclick="login()">Log in</button>

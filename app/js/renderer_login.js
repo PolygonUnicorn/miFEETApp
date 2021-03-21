@@ -19,13 +19,12 @@ window.onload = (event) => {
 function login(){
     if(passInput.value == "heslo"){
         let window = remote.getCurrentWindow();
-        console.log(ipcRenderer.sendSync('login', userInput.value)); // prints "pong"
+        console.log(ipcRenderer.send('login', userInput.value)); // prints "pong"
         window.destroy();
-
+        
+        
     }else{
         errMes.innerHTML = "Špatné heslo!";
     }
-
-    
     //ipcRenderer.send('asynchronous-message', 'ping')
 }
