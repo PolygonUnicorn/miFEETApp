@@ -1,0 +1,53 @@
+* {
+    margin: 0px;
+}
+
+body {
+    font-size: 20px;
+    font-family: Arial;
+}
+
+/* The app */
+.app-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.column {
+    margin-top: 10px;
+    
+    height: 60rem;
+}
+
+.col1 {
+    width: 77%;
+}
+
+.col2 {
+    width: 20%;
+}
+
+.app-element {
+    margin-top: 10px;
+    background-color: gray;
+}
+
+
+/* Each element in app */
+.toolbar {
+    height: 2.5em;
+}
+
+.doc-editor {
+    margin-top: 20px;
+    height: 44em;
+}
+
+.patient-info {
+    height: 12.5em;
+}
+
+.sc-menu {
+    margin-top: 20px;
+    height: 34em;
+}

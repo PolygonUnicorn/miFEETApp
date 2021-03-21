@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FEETApp</title>
 
+    <!-- Import styles -->
+    <link rel="stylesheet" href="../css/styles.css">
+
     <!-- Import jquery -->
     <script>
         window.$ = window.jQuery = require("../../plugins/jquery-3.5.1.js");
@@ -14,21 +17,26 @@
     <!-- Initialize functions from jquery -->
     <script src="../../plugins/jquery-3.5.1.js"></script>
 
-    <script>
-        $(document).ready(function(){
-            $("button").click(function(){
-                $("#testdiv").fadeIn("slow");
-            });
-        });
-    </script>
-
 </head>
 <body>
+    <!-- The whole app -->
+    <div class="app-container">
+        <div class="column col1">
+            <!-- Toolbar -->
+            <div class="toolbar app-element"></div>
 
-    
-
-    <button>Klikni ať otestuješ jQuery</button>
-    <div id="testdiv" style="display:none;">If you see this then congrats, it's all working :happeh:</div>
+            <!-- Document editor -->
+            <div class="doc-editor app-element"></div>
+        </div>
+        
+        <div class="column col2">
+            <!-- Patient info -->
+            <div class="patient-info app-element"></div>
+            
+            <!-- Search menu -->
+            <div class="sc-menu app-element"></div>
+        </div>
+    </div>
     
 </body>
 </html>
