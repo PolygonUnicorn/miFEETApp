@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
+    <!-- Import styles -->
+    <link rel="stylesheet" href="../css/styles-login.css">
+
     <!-- Renderer -->
     <script>
         require("../js/renderer_login.js");
@@ -14,10 +17,13 @@
 
 </head>
 <body>
-    <input type="text" id="user" class="user" placeholder="Username">
-    <input type="password" id="pass" class="pass" placeholder="Password">
-    <button onclick="login()">Log in</button>
-    <p id="errMes" class="errMes"></p>
-    
+    <div class="container">
+        <img src="../images/logo.jpg" alt="">
+        <input type="text" id="user" class="user input-element" placeholder="Username">
+        <input type="password" id="pass" class="pass input-element" placeholder="Password">
+        <button onclick="login()">Log in</button>
+        <p id="errMes" class="errMes"></p>
+    </div>
+
 </body>
 </html>

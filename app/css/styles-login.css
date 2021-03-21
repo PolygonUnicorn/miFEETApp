@@ -1,0 +1,42 @@
+* {
+    margin: 0px;
+}
+
+body {
+    font-size: 20px;
+    font-family: Arial;
+}
+
+
+/* The Menu */
+.container {
+    width: 90%;
+    margin: auto;
+    margin-top: 25px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
+
+.input-element {
+    width: 50%;
+    height: 1.5rem;
+}
+
+button {
+    width: 33%;
+    height: 2rem;
+}
+
+.errMes {
+    height: 1rem;
+    color: red;
+}
+
