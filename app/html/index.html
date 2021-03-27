@@ -19,6 +19,7 @@
     <!-- Renderer -->
     <script>
         require("../js/renderer_index.js");
+        const format = require('../js/functions_text_format');
     </script>
 
 </head>
@@ -34,9 +35,9 @@
                 </div>
 
                 <div class="tools row2">
-                    <button onclick=""><b>B</b></button>
-                    <button onclick=""><u>U</u></button>
-                    <button onclick=""><i>I</i></button>
+                    <button onclick="format.makeSelectedBold()"><b>B</b></button>
+                    <button onclick="format.makeSelectedUnderline()"><u>U</u></button>
+                    <button onclick="format.makeSelectedItalics()"><i>I</i></button>
                 </div>
 
                 <div class="tools row3">
@@ -51,7 +52,7 @@
                 <div class="editor" contenteditable="true"></div>
             </div>
         </div>
-        
+
         <div class="column col2">
             <!-- Patient info -->
             <div class="patient-info app-element">
@@ -61,11 +62,11 @@
                 <div class="patient-info-one" id="patient-info-rc">RČ: <div class="patient-one" id="patient-rc"></div></div>
                 <div class="patient-info-one" id="patient-info-spec">Specializace: <div class="patient-one" id="patient-spec"></div></div>
             </div>
-            
+
             <!-- Search menu -->
             <div class="sc-menu app-element"></div>
         </div>
     </div>
-    
+
 </body>
 </html>
