@@ -150,6 +150,30 @@ function InsertNewPeople(email, password) {
   });
 }
 
+function LoginIntoCheck(email, password) {
+  con.connect(function (err) {
+    if (err) throw err;
+    var sql = "SELECT d_id login WHERE email = ? AND password = ?";
+    var values = [email, generateHash(password)];
+    con.query(sql, [values], function (err, result) {
+      if (err) throw err;
+      return result;
+    });
+  });
+}
+
+function LogMe(email, password) {
+  var yesno = LoginIntoCheck(email, password);
+  var boolyesno = Boolean(yesno);
+  if (boolyesno) {
+    console.log("Access Granted");
+  }
+  else{
+    console.log("Access denied");
+  }
+
+}
+
 /*
 -------------------------------------------------------------------------------------------------------------------------
 
