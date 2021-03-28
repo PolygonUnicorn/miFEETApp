@@ -118,6 +118,7 @@ module.exports = {
     ShowDoctor: function(con){
       con.connect(function (err) {
         if (err) throw err;
+<<<<<<< HEAD
         con.query(
           "SELECT * FROM info where id_sp IS NOT NULL",
           function (err, result) {
@@ -211,3 +212,99 @@ module.exports = {
     }
 
 }
+=======
+        console.log(result);
+      }
+    );
+  });
+}
+
+//funkce vytvářející nové lidi
+function InsertNewPeople(email, password) {
+  con.connect(function (err) {
+    if (err) throw err;
+    var sql = "INSERT INTO login (email, password) VALUES (?)";
+    var values = [email, generateHash(password)];
+    con.query(sql, [values], function (err, result) {
+      if (err) throw err;
+    });
+  });
+}
+
+function LoginIntoCheck(email, password) {
+  con.connect(function (err) {
+    if (err) throw err;
+    var sql = "SELECT d_id login WHERE email = ? AND password = ?";
+    var values = [email, generateHash(password)];
+    con.query(sql, [values], function (err, result) {
+      if (err) throw err;
+      return result;
+    });
+  });
+}
+
+function LogMe(email, password) {
+  var yesno = LoginIntoCheck(email, password);
+  var boolyesno = Boolean(yesno);
+  if (boolyesno) {
+    console.log("Access Granted");
+  }
+  else{
+    console.log("Access denied");
+  }
+
+}
+
+/*
+-------------------------------------------------------------------------------------------------------------------------
+
+Funkce na vytváření, ukazování poznámek
+
+-------------------------------------------------------------------------------------------------------------------------
+*/
+
+//funkce vytvářející nové poznámky
+function InsertNote(
+  type_note,
+  header,
+  doc,
+  pacient,
+  textnote,
+  notethedate,
+  time
+) {
+  con.connect(function (err) {
+    if (err) throw err;
+    var sql =
+      "INSERT INTO notes (id_nt, name_note, id_doc, id_pac, text_note, date_time_note, timestamp_note) VALUES (?)";
+    var values = [type_note, header, doc, pacient, textnote, notethedate, time];
+    con.query(sql, [values], function (err, result) {
+      if (err) throw err;
+    });
+  });
+}
+
+//funkce ukazující všechny poznámky
+function ShowNotes() {
+  con.connect(function (err) {
+    if (err) throw err;
+    con.query("SELECT * FROM notes", function (err, result) {
+      if (err) throw err;
+      console.log(result);
+    });
+  });
+}
+
+//přetížená funkce ukazující pacientovi poznámky
+function ShowNotes(patientid) {
+  con.connect(function (err) {
+    if (err) throw err;
+    var sql = "SELECT * FROM notes where id_pac = ?";
+    var values = [patientid];
+    con.query(sql, [values], function (err, result) {
+      if (err) throw err;
+      console.log(result);
+    });
+  });
+}
+>>>>>>> 81510c5079cd4676d611e07bd72f4f90970c33f1
