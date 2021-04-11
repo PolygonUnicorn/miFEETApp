@@ -8,6 +8,7 @@ const fs = require('fs');
 
 let mainWin;
 let loginWin;
+let controllerWin;
 
 let isLoggedIn = false;
 let username;
@@ -15,11 +16,13 @@ let username;
 
 //FUNCTIONS
 
+
+//LOGIN WINDOW
 //Instanciate the login window
 function createLoginWindow(){
   loginWin = new BrowserWindow({
-    width: 1000,
-    height: 1000,
+    width: 450,
+    height: 600,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true
@@ -55,6 +58,8 @@ function createLoginWindow(){
 }
 
 
+
+//MAIN EDITOR WINDOW
 //Instanciate the main window
 function createMainWindow(){
   //Get device width and height
@@ -71,7 +76,7 @@ function createMainWindow(){
   });
 
   //Hides menu bar
-  //mainWin.setMenuBarVisibility(false);
+  mainWin.setMenuBarVisibility(false);
 
   //Create the window
   mainWin.maximize();
@@ -81,9 +86,9 @@ function createMainWindow(){
     slashes: true
   }));
 
-  //If closed, quit the whole app
+  //If closed, save progress
   mainWin.on("closed", () => {
-    app.quit();
+    //TODO: save the progress to sql
   });
 
   //Open devtools
@@ -91,6 +96,44 @@ function createMainWindow(){
 }
 
 
+
+//CONTROLLER
+//Instanciate the Controller window
+function createControllerWindow(){
+  //Get device width and height
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+  controllerWin = new BrowserWindow({
+    width,
+    height,
+    minWidth: 1280,
+    minHeight: 720,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true
+    },
+  });
+
+  //Hides menu bar
+  //controllerWin.setMenuBarVisibility(false);
+
+  //Maximize the window
+  controllerWin.maximize();
+
+  controllerWin.loadURL(url.format({
+    pathname: path.join(__dirname, "../html/controller.html"),
+    protocol: "file",
+    slashes: true
+  }));
+
+  //If closed, quit the whole app
+  controllerWin.on("closed", () => {
+    app.quit();
+  });
+}
+
+
+
+//OTHER
 //Once electron is ready, do these:
 app.on('ready', createLoginWindow);
 
@@ -103,7 +146,6 @@ app.on('window-all-closed', () => {
 
 
 //IPC COMMUNICATION
-
 //Calls on login
 ipcMain.on('login', (event, arg) => {
   isLoggedIn = true;
@@ -113,5 +155,11 @@ ipcMain.on('login', (event, arg) => {
     console.log('Temp file created');
   });
 
+  createControllerWindow();
+});
+
+
+//Calls main editor window
+ipcMain.on('editor-window', (event, arg) => {
   createMainWindow();
 });

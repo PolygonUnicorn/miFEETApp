@@ -1,6 +1,6 @@
 const { ipcRenderer } = require('electron');
 const remote = require('electron').remote;
-const fsql = require("C:/Users/Tadeas/Desktop/miFEETApp/app/js/functions-sql");
+const fsql = require("../js/functions-sql.js");
 
 
 //VARIABLES
