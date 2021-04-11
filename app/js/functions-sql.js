@@ -140,7 +140,21 @@ module.exports = {
         this.con.query(sql, [values], function (err, result) {
           if (err) throw err;
         });
-    },
+  },
+
+  LoginIntoCheck: function(email, password){
+    var sql = "SELECT COUNT(d_id) from login WHERE email = ? AND password = ?";
+    let values = [email, generateHash(password)];
+    this.con.query(sql, [values], function (err, result) {
+      if (err) throw err;
+    });
+},
+  
+  LogMe: function(email, password) {
+    let yesno = false;
+    yesno = LoginIntoCheck(email, password);
+    return yesno;
+  },
 
     /*
     -------------------------------------------------------------------------------------------------------------------------
