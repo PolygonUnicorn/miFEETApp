@@ -156,21 +156,25 @@ module.exports = {
     return yesno;
   },
 
-    LoginIntoCheck: function(email, password){
+    LoginIntoCheck: function(email, password, callback){
       var sql = "SELECT COUNT(d_id) from login WHERE email = ? AND password = ?";
       let values = [email];
       let values2 = [this.generateHash(password)];
       this.con.query(sql, [values, values2], function (err, result) {
         if (err) throw err;
-        return result;
+        let trueRes = result[0];
+        //console.log(trueRes["COUNT(d_id)"]);
+        return callback(trueRes["COUNT(d_id)"]);
       });
     },
     
-    LogMe: function(email, password) {
-      let yesno = false;
-      yesno = this.LoginIntoCheck(email, password);
-      console.log(yesno);
-      return yesno;
+    LogMe: function(email, password, callback) {
+      let yesno;
+      this.LoginIntoCheck(email, password, function(result){
+        yesno = result;
+        console.log(yesno);
+        return callback(yesno);
+      });
     },
 
     /*

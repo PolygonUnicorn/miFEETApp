@@ -21,16 +21,24 @@ window.onload = (event) => {
 //FUNCTIONS
 function login(){
 
-    let heslo = fsql.LogMe(userInput.value, passInput.value);
+    let heslo;
 
-    if(heslo){
-        console.log("No, mělo by náš to připojit no");
-        let window = remote.getCurrentWindow();
-        console.log(ipcRenderer.send('login', userInput.value)); // prints "pong"
-        window.destroy();
+    fsql.LogMe(userInput.value, passInput.value, function(result){
+        heslo = result;
+        console.log(heslo);
 
-    }else{
-        errMes.innerHTML = "Špatné heslo!";
-    }
+        if(heslo == 1){
+            console.log("No, mělo by náš to připojit no");
+            let window = remote.getCurrentWindow();
+            console.log(ipcRenderer.send('login', userInput.value)); // prints "pong"
+            window.destroy();
+    
+        }else{
+            errMes.innerHTML = "Špatné heslo!";
+        }
+    });
+    
+
+    
     //ipcRenderer.send('asynchronous-message', 'ping')
 }
