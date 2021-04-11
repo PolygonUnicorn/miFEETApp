@@ -136,10 +136,27 @@ module.exports = {
     //funkce vytvářející nové lidi
     InsertNewPeople: function(email, password){
         let sql = "INSERT INTO login (email, password) VALUES (?)";
-        let values = [email, generateHash(password)];
+        let values = [email, this.generateHash(password)];
         this.con.query(sql, [values], function (err, result) {
           if (err) throw err;
         });
+    },
+
+    LoginIntoCheck: function(email, password){
+      var sql = "SELECT COUNT(d_id) from login WHERE email = ? AND password = ?";
+      let values = [email];
+      let values2 = [this.generateHash(password)];
+      this.con.query(sql, [values, values2], function (err, result) {
+        if (err) throw err;
+        return result;
+      });
+    },
+    
+    LogMe: function(email, password) {
+      let yesno = false;
+      yesno = this.LoginIntoCheck(email, password);
+      console.log(yesno);
+      return yesno;
     },
 
     /*

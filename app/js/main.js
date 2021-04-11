@@ -18,8 +18,8 @@ let username;
 //Instanciate the login window
 function createLoginWindow(){
   loginWin = new BrowserWindow({
-    width: 450,
-    height: 600,
+    width: 1000,
+    height: 1000,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true
@@ -30,7 +30,7 @@ function createLoginWindow(){
   });
 
   //Hides menu bar
-  loginWin.setMenuBarVisibility(false);
+  //loginWin.setMenuBarVisibility(false);
 
   loginWin.loadURL(url.format({
     pathname: path.join(__dirname, "../html/login.html"),
