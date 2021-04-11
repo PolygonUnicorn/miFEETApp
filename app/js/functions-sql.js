@@ -18,8 +18,6 @@ module.exports = {
 
     -------------------------------------------------------------------------------------------------------------------------
     */
-  
-  
 
     //vytváření spojení mysql databáze a nodejs
     con: mysql.createConnection({
@@ -29,18 +27,19 @@ module.exports = {
       password: "parez123",
       database: "medicalapp"
     }),
-  
+
     JoinIn: function(){
-      this.con.connect(function(err){
-          if(err) throw err;
-          console.log("Úspěšně připojeno!");
-      });
-  },
+        this.con.connect(function(err){
+            if(err) throw err;
+            console.log("Úspěšně připojeno!");
+        });
+    },
+
 
     //pomocná funkce pro získání času
     getTimeDate: function(){
-      var currentdate = new Date();
-      var datetime =
+      let currentdate = new Date();
+      let datetime =
         currentdate.getFullYear() +
         "-" +
         (currentdate.getMonth() + 1) +
@@ -58,8 +57,8 @@ module.exports = {
 
     //funkce vytvářející hash z hesel
     generateHash: function(newpassword){
-      var name = newpassword;
-      var hash = crypto.createHash("md5").update(name).digest("hex");
+      let name = newpassword;
+      let hash = crypto.createHash("md5").update(name).digest("hex");
       return hash;
     },
 
@@ -72,77 +71,59 @@ module.exports = {
     */
 
     //funkce vracející všechny lidi, nehledě na jejich postavení, do konzole
-    showPeople: function(con){
-        con.connect(function (err) {
-            if (err) throw err;
-            con.query("SELECT * FROM login", function (err, result) {
-              if (err) throw err;
-              console.log(result);
-            });
-          });
+    showPeople: function(){
+      this.con.query("SELECT * FROM login", function (err, result) {
+        if (err) throw err;
+        console.log(result);
+      });
     },
 
     //přetížená funkce vracející emaily
-    showPeople: function(con, email){
-      con.connect(function (err) {
-        if (err) throw err;
-        con.query("SELECT email FROM login", function (err, result) {
+    showPeople: function(email){
+        this.con.query("SELECT email FROM login", function (err, result) {
           if (err) throw err;
           console.log(result);
         });
-      });
     },
 
     //přetížená funkce, která volá určitého pacienta
-    showPatients: function(con){
-        this.con.connect(function (err) {
-            if (err) throw err;
-            var values = [idpatient];
-            this.con.query("SELECT * FROM info where id = ?", [values],
-              function (err, result) {
-                if (err) throw err;
-                console.log(result);
-              }
-            );
-        });
+    showPatients: function(idpatient){
+      let values = [idpatient];
+      this.con.query("SELECT * FROM info where id = ?", [values],
+        function (err, result) {
+          if (err) throw err;
+          console.log(result);
+        }
+      );
     },
 
-    //přetížená funkce, která ukáže doktora podle id
-    ShowPatients: function(con, idpatient){
-      con.connect(function (err) {
-        if (err) throw err;
-        var values = [idpatient];
-        con.query(
-          "SELECT * FROM info where id = ?",
-          [values],
-          function (err, result) {
-            if (err) throw err;
-            console.log(result);
-          }
-        );
-      });
-    },
+    //funkce, která ukáže všechny pacienty
+    //funkce, která ukáže všechny doktory
+    ShowPatients: function(){
+      this.con.query(
+        "SELECT * FROM info where id_sp IS NULL",
+        function (err, result) {
+          if (err) throw err;
+          console.log(result);
+        }
+      );
+  },
 
     //funkce, která ukáže všechny doktory
-    ShowDoctor: function(con){
-      con.connect(function (err) {
-        if (err) throw err;
-        con.query(
+    ShowDoctor: function(){
+        this.con.query(
           "SELECT * FROM info where id_sp IS NOT NULL",
           function (err, result) {
             if (err) throw err;
             console.log(result);
           }
         );
-      });
     },
 
     //přetížená funkce, která ukáže doktora podle id
-    ShowDoctor: function(con, iddoctor){
-      con.connect(function (err) {
-        if (err) throw err;
-        var values = [iddoctor];
-        con.query(
+    ShowDoctor: function(iddoctor){
+        let values = [iddoctor];
+        this.con.query(
           "SELECT * FROM info where id_sp =?",
           [values],
           function (err, result) {
@@ -150,19 +131,15 @@ module.exports = {
             console.log(result);
           }
         );
-      });
     },
 
     //funkce vytvářející nové lidi
-    InsertNewPeople: function(con, email, password){
-      con.connect(function (err) {
-        if (err) throw err;
-        var sql = "INSERT INTO login (email, password) VALUES (?)";
-        var values = [email, generateHash(password)];
-        con.query(sql, [values], function (err, result) {
+    InsertNewPeople: function(email, password){
+        let sql = "INSERT INTO login (email, password) VALUES (?)";
+        let values = [email, generateHash(password)];
+        this.con.query(sql, [values], function (err, result) {
           if (err) throw err;
         });
-      });
     },
 
     /*
@@ -175,48 +152,37 @@ module.exports = {
 
     //funkce vytvářející nové poznámky
     InsertNote: function(
-      con,
       type_note,
       header,
       doc,
       pacient,
       textnote,
       notethedate,
-      time
-      ){
-      con.connect(function (err) {
-        if (err) throw err;
-        var sql =
-          "INSERT INTO notes (id_nt, name_note, id_doc, id_pac, text_note, date_time_note, timestamp_note) VALUES (?)";
-        var values = [type_note, header, doc, pacient, textnote, notethedate, time];
-        con.query(sql, [values], function (err, result) {
+      time){
+        let sql = "INSERT INTO notes (id_nt, name_note, id_doc, id_pac, text_note, date_time_note, timestamp_note) VALUES (?)";
+        let values = [type_note, header, doc, pacient, textnote, notethedate, time];
+        this.con.query(sql, [values], function (err, result) {
           if (err) throw err;
+          console.log(result);
         });
-      });
     },
 
     //funkce ukazující všechny poznámky
-    ShowNotes: function(con){
-      con.connect(function (err) {
-        if (err) throw err;
-        con.query("SELECT * FROM notes", function (err, result) {
+    ShowNotes: function(){
+        this.con.query("SELECT * FROM notes", function (err, result) {
           if (err) throw err;
           console.log(result);
         });
-      });
     },
 
     //přetížená funkce ukazující pacientovi poznámky
-    ShowNotes: function(con, patientid){
-      con.connect(function (err) {
-        if (err) throw err;
-        var sql = "SELECT * FROM notes where id_pac = ?";
-        var values = [patientid];
-        con.query(sql, [values], function (err, result) {
+    ShowNotes: function(patientid){
+        let sql = "SELECT * FROM notes where id_pac = ?";
+        let values = [patientid];
+        this.con.query(sql, [values], function (err, result) {
           if (err) throw err;
           console.log(result);
         });
-      });
     }
 
 }
