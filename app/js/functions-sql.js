@@ -18,6 +18,8 @@ module.exports = {
 
     -------------------------------------------------------------------------------------------------------------------------
     */
+  
+  
 
     //vytváření spojení mysql databáze a nodejs
     con: mysql.createConnection({
@@ -27,6 +29,13 @@ module.exports = {
       password: "parez123",
       database: "medicalapp"
     }),
+  
+    JoinIn: function(){
+      this.con.connect(function(err){
+          if(err) throw err;
+          console.log("Úspěšně připojeno!");
+      });
+  },
 
     //pomocná funkce pro získání času
     getTimeDate: function(){
