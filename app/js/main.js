@@ -18,8 +18,8 @@ let username;
 //Instanciate the login window
 function createLoginWindow(){
   loginWin = new BrowserWindow({
-    width: 1000,
-    height: 1000,
+    width: 450,
+    height: 600,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true
@@ -42,7 +42,7 @@ function createLoginWindow(){
   loginWin.once("ready-to-show", () => {
     loginWin.show();
   });
-  
+
   //If closed by user before login, quit the whole app
   loginWin.on("closed", () => {
     if(!isLoggedIn){

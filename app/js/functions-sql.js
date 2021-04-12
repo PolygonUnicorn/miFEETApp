@@ -23,8 +23,8 @@ module.exports = {
     con: mysql.createConnection({
       host: "89.102.177.117",
       port: "3306",
-      user: "tadeasek",
-      password: "parez123",
+      user: "jmeno",
+      password: "heslo",
       database: "medicalapp"
     }),
 
@@ -149,7 +149,7 @@ module.exports = {
       if (err) throw err;
     });
 },
-  
+
   LogMe: function(email, password) {
     let yesno = false;
     yesno = LoginIntoCheck(email, password);
@@ -167,7 +167,7 @@ module.exports = {
         return callback(trueRes["COUNT(d_id)"]);
       });
     },
-    
+
     LogMe: function(email, password, callback) {
       let yesno;
       this.LoginIntoCheck(email, password, function(result){

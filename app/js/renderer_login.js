@@ -1,6 +1,6 @@
 const { ipcRenderer } = require('electron');
 const remote = require('electron').remote;
-const fsql = require("C:/Users/Tadeas/Desktop/miFEETApp/app/js/functions-sql");
+const fsql = require('../js/functions-sql.js');
 
 
 //VARIABLES
@@ -32,13 +32,13 @@ function login(){
             let window = remote.getCurrentWindow();
             console.log(ipcRenderer.send('login', userInput.value)); // prints "pong"
             window.destroy();
-    
+
         }else{
             errMes.innerHTML = "Špatné heslo!";
         }
     });
-    
 
-    
+
+
     //ipcRenderer.send('asynchronous-message', 'ping')
 }
