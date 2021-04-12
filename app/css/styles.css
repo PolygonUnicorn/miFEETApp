@@ -1,10 +1,10 @@
 * {
-    margin: 0px;
+    margin: 0;
 }
 
 body {
     font-size: 20px;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background-color: rgb(241, 241, 241);
 }
 
@@ -16,7 +16,7 @@ body {
 
 .column {
     margin-top: 10px;
-    
+
     height: 60rem;
 }
 
@@ -61,12 +61,10 @@ body {
 /* Tool bar */
 .toolbar {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 .tools {
-    
+
 }
 
 .tools:nth-child(even) {
@@ -74,13 +72,12 @@ body {
 }
 
 .tools button {
-    margin-top: 5px;
-    margin-left: 10px;
+    margin: 5px 5px;
     height: 2.5rem;
     background-color: rgb(226, 226, 226);
     border: none;
     border-radius: 3px;
-    padding: 0px 0.75rem;
+    padding: 0 0.75rem;
     outline: rgb(185, 88, 88);
 }
 
@@ -92,16 +89,8 @@ body {
     background-color: rgb(228, 228, 228);
 }
 
-.row1 {
+.row {
     flex-grow: 1;
-}
-
-.row2 {
-    flex-grow: 5;
-}
-
-.row3 {
-    flex-grow: 3;
 }
 
 
