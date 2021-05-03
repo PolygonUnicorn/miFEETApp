@@ -1,4 +1,4 @@
-module.exports = {
+const format = module.exports = {
     /**
      * Makes the selected text bold
      */
@@ -29,3 +29,14 @@ module.exports = {
      */
     justifyRight: () => document.execCommand('justifyRight'),
 }
+
+/**
+ * Reset the formatting after pressing an enter key
+ */
+document.addEventListener('keypress', ev => {
+    if (ev.key === 'Enter') {
+        if (document.queryCommandState('bold')) format.makeBold();
+        if (document.queryCommandState('underline')) format.makeUnderline();
+        if (document.queryCommandState('italic')) format.makeItalics();
+    }
+})
