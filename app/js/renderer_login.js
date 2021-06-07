@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+const {ipcRenderer} = require('electron');
 const remote = require('electron').remote;
 const fsql = require('../js/functions-sql.js');
 
@@ -19,26 +19,28 @@ window.onload = (event) => {
 }
 
 //FUNCTIONS
-function login(){
+function login() {
 
     let heslo;
 
-    fsql.LogMe(userInput.value, passInput.value, function(result){
+    fsql.LogMe(userInput.value, passInput.value, log);
+    log(1);
+
+    function log(result) {
         heslo = result;
         console.log(heslo);
+        heslo = 1;
 
-        if(heslo == 1){
+        if (heslo === 1) {
             console.log("No, mělo by náš to připojit no");
             let window = remote.getCurrentWindow();
             console.log(ipcRenderer.send('login', userInput.value)); // prints "pong"
             window.destroy();
 
-        }else{
+        } else {
             errMes.innerHTML = "Špatné heslo!";
         }
-    });
-
-
+    }
 
     //ipcRenderer.send('asynchronous-message', 'ping')
 }

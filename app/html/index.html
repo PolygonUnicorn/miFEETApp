@@ -36,9 +36,9 @@
 
                 <div class="tools row">
                     <input type="number" min="1" value="16">
-                    <button onclick="format.makeBold()"><strong>B</strong></button>
-                    <button onclick="format.makeUnderline()"><u>U</u></button>
-                    <button onclick="format.makeItalics()"><i>I</i></button>
+                    <button id="boldButton" onclick="format.makeBold()"><strong>B</strong></button>
+                    <button id="underlineButton" onclick="format.makeUnderline()"><u>U</u></button>
+                    <button id="italicButton" onclick="format.makeItalics()"><i>I</i></button>
                 </div>
 
                 <div class="tools row">
@@ -50,7 +50,7 @@
 
             <!-- Document editor -->
             <div class="doc-editor app-element">
-                <div class="editor" contenteditable="true"></div>
+                <div id="editor" class="editor" contenteditable="true"></div> <!--oninput="format.handleInput()" onclick="format.handleInput()" onkeyup="format.handleInput()"-->
             </div>
         </div>
 
@@ -68,6 +68,5 @@
             <div class="sc-menu app-element"></div>
         </div>
     </div>
-
 </body>
 </html>

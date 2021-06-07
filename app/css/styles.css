@@ -93,6 +93,9 @@ body {
     flex-grow: 1;
 }
 
+button.active {
+    background-color: darkgray;
+}
 
 /* Document editor */
 .editor {
